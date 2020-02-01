@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css" th:href="@{/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+    <div th:replace="/layout/adminlayout :: adminHeader"></div>
+
+    <form action="#" th:object="${category}" th:action="@{/category}" method="post">
+        <div class="container">
+         <div class="form-group row mt-5">
+            <label for="name" class="col-sm-3 col-md-2 col-lg-2 col-form-label">Name</label>
+            <div class="col-sm-9 col-md-10">
+                <input type="text" id="name" th:field="*{name}" class="form-control">
+                <small th:if="${#fields.errors('name')}" th:errors="*{name}" class="text-danger"></small>
+            </div>
+         </div>
+        </div>
+        <button type="submit"  class="btn btn-primary">Submit</button>
+    </form>
+
+
+
+<!--    <div th:replace="/layout/adminlayout :: adminscript"></div>-->
+
+</body>
+</html>

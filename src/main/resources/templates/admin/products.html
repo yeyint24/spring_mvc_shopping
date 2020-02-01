@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css" th:href="@{/bootstrap/css/bootstrap.min.css}">
+</head>
+<body>
+    <div th:replace="/layout/adminlayout :: adminHeader"></div>
+    <div class="container">
+
+        <div th:if="${success}">
+            <p class="alert alert-success" role="alert">New Product successfully created</p>
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Qty</th>
+                <th>Price</th>
+                <th>Date</th>
+                <th>Category</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="prod : ${products}">
+                <td th:text="${prod.id}"></td>
+                <td th:text="${prod.name}"></td>
+                <td th:text="${prod.qty}"></td>
+                <td th:text="${prod.price}"></td>
+                <td th:text="${prod.lastUpdated}"></td>
+                <td th:text="${prod.category.name}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
