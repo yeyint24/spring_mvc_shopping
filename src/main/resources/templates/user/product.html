@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css" th:href="@{/bootstrap/css/bootstrap.min.css}">
+
+</head>
+<body>
+    <div th:replace="layout/userlayout :: userhead"></div>
+
+    <div class="container">
+        <div class="row mb-10">
+            <div class="col-sm-4 mt-5" th:each="pro :${products}">
+                <div class="card"  style="width: 18rem;">
+                    <img class="card-img-top" src="images/" th:src="@{'/images/'+ ${pro.name} + '.jpg'}" alt="Image Error">
+                    <div class="card-body">
+                        <h5 class="card-title" th:text="${pro.name}"></h5>
+                        <p class="card-text" th:text=" 'Quantity  : ' + ${pro.qty}"></p>
+                        <p class="card-text" th:text="'Price  :  '  + ${pro.price}"></p>
+                        <a th:href="@{'/products/'+${pro.id}}" class="btn btn-primary">Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+<!--    <div th:replace="layout/userlayout :: userfooter"></div>-->
+</body>
+</html>

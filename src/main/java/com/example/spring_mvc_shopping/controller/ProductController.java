@@ -10,8 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @Controller
 public class ProductController {
@@ -52,6 +56,23 @@ public class ProductController {
         model.addAttribute("success",model.containsAttribute("success"));
         return "admin/products";
     }
+    @GetMapping("/home/category/{id}")
+    public String showProductByCategory(@PathVariable int id, Model model){
+        model.addAttribute("products",productService.findProductByCategory(id));
+        return "user/product";
+    }
+
+    @GetMapping("/products/{id}")
+    public String findProductById(@PathVariable int id, Model model, HttpServletRequest request){
+        model.addAttribute("products",productService.findById(id));
+        HttpSession session=request.getSession(false);
+        if(session!=null){
+            model.addAttribute("cartSize",session.getAttribute("cartSize"));
+        }
+        return "user/productdetails";
+    }
+
+
 
 
 }

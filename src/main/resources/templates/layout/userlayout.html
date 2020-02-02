@@ -7,9 +7,15 @@
 
 </head>
 <body>
-    <div th:replace="layout/fragments/header ::header "> </div>
-    <div th:replace="layout/fragments/headerimg ::himg"></div>
+    <div th:fragment="userhead">
+        <div th:replace="layout/fragments/header ::header "> </div>
+        <div th:replace="layout/fragments/headerimg ::himg"></div>
+    </div>
+
     <div th:replace="layout/fragments/body ::fbody"></div>
-    <div th:replace="layout/fragments/footer ::ffooter"></div>
+
+    <div th:fragment="userfooter">
+        <div th:replace="layout/fragments/footer ::ffooter"></div>
+    </div>
 </body>
 </html>
